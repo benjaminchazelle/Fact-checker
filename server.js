@@ -7,10 +7,6 @@ var DBpediaSimilarity = require("./DBpediaSimilarity.js");
 
 app.use('/', express.static(__dirname + '/webapp'));
 
-app.get('/n', function(req, res){
-	res.sendFile(__dirname + '/n.html');
-});
-
 io.on('connection', function(socket){
 	
 	socket.on('app', function(message){

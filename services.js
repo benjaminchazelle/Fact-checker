@@ -65,9 +65,9 @@ class WS {
 	}
 	
 	spotlight(text, cb) {
-		//fix to a specific endpoint (i.e. disabling language detection) 
+
 		apiSpotlight.fixToEndpoint('english');
-		//use custom endpoints 
+		
 		apiSpotlight.configEndpoints(
 			{
 			  "english": {
@@ -80,20 +80,12 @@ class WS {
 			}
 		);
 		
-		//Récupérer les singulets		
 		apiSpotlight.annotate(text, function (anotations) {
 		  var res = anotations.response.Resources;
 		  var entities = [];
 		  
-		  //Les informations qu'on veut retirer de l'objet
-		 // var attributes = ['@URI','@types','@surfaceForm']
-		  
-		  for (var i in res) { //Pour chaque Entité retournée
+		  for (var i in res) { 
 			entities.push(res[i]['@URI'] );
-			/*	output[i] = {} //Initialisation de l'objet
-			for (var j in attributes) { //Pour chaque propriété qu'on veut extraire
-				output[i][attributes[j]] = res[i][attributes[j]] //On prend la valeur URI et on la range 'à la main'. Notez la bidouille à cause du caractères spécial
-			}*/
 		  }
 
 		  cb(entities);

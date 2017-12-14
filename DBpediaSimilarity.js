@@ -28,9 +28,7 @@ class DBpediaSimilarity {
 			self.entities = Array.from(new Set(entities));
 			
 			self.signalCallback("Entities", entities);
-			
-			// console.log("Entities : ", self.entities);
-			
+						
 			for(var entity of self.entities) {
 				
 				self.entitiesLabels.push(self.getLabelFromEntity(entity));
@@ -229,7 +227,7 @@ class DBpediaSimilarity {
 					}
 				}
 				
-				if(localEntities.length >= 2) { // && localEntities.length >= this.entities.length-1) {
+				if(localEntities.length >= 2) {
 														
 					var lemmatized = Services.lemmatize(sentenceWithoutEntities);									
 					
@@ -239,19 +237,12 @@ class DBpediaSimilarity {
 						entities : localEntities
 					};										
 					
-					// this.knoweldges[sentence] = {
-						// originalSentence : sentence,
-						// graph : spo.graph
-					// };
-					
 				}
 				
 			}
 			
 		}
-		
-		// console.log("$$$", this.knoweldges);
-		
+				
 	}
 	
 	verbify(sentence) {
@@ -401,64 +392,8 @@ class DBpediaSimilarity {
 		
 		this.signalCallback("Results", results);
 		
-		// console.log(results);
-	}
-	/*
-	scoringResults(results) {
-		
-		
-		
-		var scoresMots = [];
-		var mots = [];
-		var scoreMot;
-		for(var i = 0; i < data.query.enhanced.length; i++){
-			for(var j = 0; j < wordBank.bank.length; j++){
-				if(data.query.enhanced[i] == wordBank.bank[j]){
-					scoreMot = (j+1)/wordBank.bank.length;
-					scoresMots.push(scoreMot);
-					break;
-				}
-			}
-			if(scoresMots.length==i){
-				scoreMot = 1
-				scoresMots.push(scoreMot);
-			}
-			console.log("score du mot n°",i," = ",scoreMot);
-			mots.push(data.query.enhanced[i]);
-		}		
-		
-		var scoredResults = results;
-		
-		this.answerResult(scoredResults);
-		
-		this.signalCallback("Results", results);
-		
-	}*/
-	
-	answerResult(scoredResults) {
-		
-		
-		/*
-		
-		require("fs").writeFileSync("result.json", JSON.stringify(results, null, 4));
-		
-		this.callback({
-			query : {
-				original : this.rawFact,
-				lemmatized : this.lemmatizedFact,
-				enhanced : this.fact
-			},
-			entities : {
-				'uris' : this.entities,
-				'labels' : this.entitiesLabels,
-				'images' : this.entitiesImages
-			},
-			results : scoredResults
-		}, null)	*/	
-	}
+	}	
 
 };
-
-// new DBpediaSimilarity("Nicolas Sarkozy is the president of the France", function(s, v) {console.log(s, v);});
 
 module.exports = DBpediaSimilarity;
